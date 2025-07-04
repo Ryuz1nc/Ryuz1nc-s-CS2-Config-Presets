@@ -1,5 +1,6 @@
 <h1 align="center">CFG预设 For CS2</h1>
 <h4 align="center">适用于CS2各场景的CFG预设文件</h3>
+<h4 align="center">Ryuz1nc个人修改版本</h3>
 
 <div align="center">
 
