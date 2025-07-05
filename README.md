@@ -17,7 +17,7 @@ Purple-CSGO：
 |       游戏设置       |      `auto.cfg`       |
 | 准星参数（使用跳投） |    `crosshair.cfg`    |
 |     投掷准星参数     | `crosshair_throw.cfg` |
-|       跑图指令       |    `practice.cfg`     |
+|       跑图指令       |      `pt.cfg`         |
 |      本地 solo       |      `solo.cfg`       |
 |      观看 demo       |      `demo.cfg`       |
 |      HLAE 设置       |      `hlae.cfg`       |
