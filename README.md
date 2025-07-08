@@ -35,14 +35,9 @@ Ryuz1nc：
 
 ### Github Release
 
-[Releases](https://github.com/Purple-CSGO/CS2-Config-Presets/releases)
+[Releases]([https://github.com/LiueXR/Ryuz1nc-s-CS2-Config-Presets/releases)
 
 
-### HLAE中文站
-
-https://hlae.site
-
-下载地址: https://api.upup.cool/get/cs2-cfg
 
 ### 网盘
 
