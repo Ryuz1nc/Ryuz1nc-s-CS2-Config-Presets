@@ -1,0 +1,53 @@
+name: Publish Z1ncV1-C
+
+on:
+  push:
+    branches:
+      - codex/publish-Z1ncV1-C
+    paths:
+      - .github/workflows/publish-Z1ncV1-C.yml
+      - .github/scripts/build_release.py
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-Z1ncV1-C
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: Z1ncV1-C
+      SOURCE_COMMIT: 07fc257be6d59e6420f8e382709a0d64a159e714
+    steps:
+      - name: Check out release tooling and tags
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Build and verify release archive
+        run: python3 .github/scripts/build_release.py --output dist
+
+      - name: Publish release and assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse "${RELEASE_TAG}^{commit}")" = "$SOURCE_COMMIT"
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "Release already exists; refusing to replace it."
+            exit 1
+          fi
+          gh release create "$RELEASE_TAG" \
+            --verify-tag \
+            --title "Z1ncV1-C — 同步上游 v2.6e 与个人准星迁移" \
+            --notes-file dist/RELEASE.md \
+            --latest \
+            "dist/${RELEASE_TAG}.zip" \
+            "dist/${RELEASE_TAG}.zip.sha256"
